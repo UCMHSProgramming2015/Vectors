@@ -17,9 +17,10 @@ void setup() {
 
 void draw() {
   //draw background to cover previous frame
-  background(0);
+  background(255,frameCount%360,250);
 
   //draw ball
+  noStroke();
   ellipse(loc.x, loc.y, diam, diam);
 
   //add velocity to position
