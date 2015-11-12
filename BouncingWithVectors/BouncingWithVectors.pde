@@ -1,11 +1,8 @@
-//declare variables
 float x, y, velX, velY, diam;
 
-void setup() {
-  //set size of canvas
+void setup()
+{
   size(800, 600);
-
-  //initialize variables
   x = width/2;
   y = height/2;
   diam = 80;
@@ -13,25 +10,24 @@ void setup() {
   velY = random(-5, 5);
 }
 
-void draw() {
-  //draw background to cover previous frame
+void draw() 
+{
   background(0);
-
-  //draw ball
   ellipse(x, y, diam, diam);
 
-  //add velocity to position
   x += velX;
   y += velY;
 
-  //bounce ball if it hits walls
-  if (x + diam/2 >= width) {
-    velX = -abs(velX);    //if the ball hits the right wall, assign x velocity the negative version of itself
+  if (x + diam/2 >= width)
+  {
+    velX = -abs(velX);    
   } else if (x - diam/2 <= 0) {
-    velX = abs(velX);     //if the ball hits the left wall, assign x velocity the positive version of itself
+    velX = abs(velX);    
   }
-  if (y + diam/2 >= height) {
+  if (y + diam/2 >= height)
+  {
     velY = -abs(velY);
   } else if (y - diam/2 <= 0) {
     velY = abs(velY);
   }
+}
