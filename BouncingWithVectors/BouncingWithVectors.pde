@@ -20,6 +20,7 @@ void setup() {
   //vel.loc.x = random(-5, 5);
   //vel.loc.y = random(-5, 5);
   vel = PVector.random2D();
+  vel.mult(5);
 }
 
 void draw() {
