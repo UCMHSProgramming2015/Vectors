@@ -25,9 +25,7 @@ void draw() {
   ellipse(loc.x, loc.y, diam, diam);
 
   //add velocity to position
-  loc.x += vel.x;
-  loc.y += vel.y;
-
+loc.add(vel); // adding vel to loc replaces loc.x += vel.x; loc.y += vel.y;
   //bounce ball if it hits walls
   if (loc.x + diam/2 >= width) {
     vel.x = -abs(vel.x);    //if the ball hits the right wall, assign x velocity the negative version of itself
