@@ -35,3 +35,4 @@ void draw() {
   } else if (y - diam/2 <= 0) {
     velY = abs(velY);
   }
+}
