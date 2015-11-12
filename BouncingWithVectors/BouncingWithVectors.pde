@@ -20,7 +20,8 @@ void setup() {
 
   //velX = random(-5, 5):
   //velY = random(-5, 5);
-  vel = new PVector(random(-5, 5), random(-5,5));
+  vel = PVector.random2D();
+  vel.mult(5);
 }
 
 void draw() {
@@ -30,10 +31,11 @@ void draw() {
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
 
-  //add velocitloc.y to position
-  loc.x += vel.x;
-  loc.y += vel.y;
-
+  //add velocity to position
+  //loc.x += vel.x;
+  //loc.y += vel.y;
+  loc.add(vel);
+  
   //bounce ball if it hits walls
   if (loc.x + diam/2 >= width) {
     vel.x = -abs(vel.x);    //if the ball hits the right wall, assign loc.x velocity the negative version of itself
