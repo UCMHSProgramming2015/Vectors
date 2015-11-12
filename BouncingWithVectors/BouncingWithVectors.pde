@@ -2,6 +2,7 @@
 float diam;
 PVector pos;
 PVector vel;
+PVector acc;
 
 void setup() {
   //set size of canvas
@@ -10,7 +11,8 @@ void setup() {
   //initialize variables
   pos = new PVector(width/2,height/2);
   diam = 80;
-  vel = new PVector(random(-5,5),random(-5,5));
+  vel = PVector.random2D();
+  vel.mult(10);
 }
 
 void draw() {
@@ -22,7 +24,9 @@ void draw() {
 
   //add velocity to position
   pos.add(vel);
-
+  acc= new PVector(-vel.y,vel.x);
+  acc.mult(.01);
+  vel.add(acc);
   //bounce ball if it hits walls
   if (pos.x + diam/2 >= width) {
     vel.x = -abs(vel.x);    //if the ball hits the right wall, assign x velocity the negative version of itself
