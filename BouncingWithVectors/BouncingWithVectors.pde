@@ -14,7 +14,8 @@ void setup() {
   
   diam = 80;
   
-  vel = new PVector(random(-5,5),random(-5,5));
+  vel = PVector.random2D();
+  vel.mult(5);
 }
 
 void draw() {
