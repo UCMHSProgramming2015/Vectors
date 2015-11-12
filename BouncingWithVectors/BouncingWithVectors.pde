@@ -1,33 +1,33 @@
-float x, y, velX, velY, diam;
+float diam;
+PVector loc;
+PVector vel;
 
 void setup()
 {
   size(800, 600);
-  x = width/2;
-  y = height/2;
   diam = 80;
-  velX = random(-5, 5);
-  velY = random(-5, 5);
+  loc = new PVector (width/2,height/2);
+  vel = new PVector (random(-5,5),random(-5,5));
 }
 
 void draw() 
 {
   background(0);
-  ellipse(x, y, diam, diam);
+  ellipse(loc.x, loc.y, diam, diam);
 
-  x += velX;
-  y += velY;
+  loc.x += vel.x;
+  loc.y += vel.y;
 
-  if (x + diam/2 >= width)
+  if (loc.x + diam/2 >= width)
   {
-    velX = -abs(velX);    
-  } else if (x - diam/2 <= 0) {
-    velX = abs(velX);    
+    vel.x = -abs(vel.x);    
+  } else if (loc.x - diam/2 <= 0) {
+    vel.x = abs(vel.x);    
   }
-  if (y + diam/2 >= height)
+  if (loc.y + diam/2 >= height)
   {
-    velY = -abs(velY);
-  } else if (y - diam/2 <= 0) {
-    velY = abs(velY);
+    vel.y = -abs(vel.y);
+  } else if (loc.y - diam/2 <= 0) {
+    vel.y = abs(vel.y);
   }
 }
