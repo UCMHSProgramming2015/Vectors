@@ -13,7 +13,8 @@ void setup() {
   loc = new PVector(width/2,height/2);//intialzing loc. is the same as intializing x and y
   //vel.x = random(-5, 5);
   //vel.y = random(-5, 5);
-  vel = new PVector(random(-5,5), random(-5,5));//intialzing vel. is the same as intializing vel.x and vel.y
+  vel = PVector.random2D();
+  vel.mult(5);
 }
 
 void draw() {
@@ -24,8 +25,8 @@ diam= 70;
   ellipse(loc.x, loc.y, diam, diam);
 
   //add velocity to position
-  loc.x += vel.x;
-  loc.y += vel.y;
+ loc.add(vel);
+
 
   //bounce ball if it hits walls
   if (loc.x + diam/2 >= width) {
