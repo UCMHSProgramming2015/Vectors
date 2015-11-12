@@ -13,6 +13,8 @@ void setup()
 void draw() 
 {
   background(0);
+  noStroke();
+  fill(random(255),random(255),random(255));
   ellipse(loc.x, loc.y, diam, diam);
 
   loc.x += vel.x;
