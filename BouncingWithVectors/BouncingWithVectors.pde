@@ -16,7 +16,8 @@ void setup() {
 
   //initialize vectors
   loc = new PVector(width/2, height/2);
-  vel = new PVector(random(-5,5),random(-5,5));
+  vel = PVector.random2D();  //creates random velocity with a magnitude of 1
+  vel.mult(7);  //makes the magnitude 7
   
   //initialize diameter
   diam = 80;
