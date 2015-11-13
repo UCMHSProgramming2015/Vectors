@@ -4,6 +4,7 @@ int mode;
 float[] diam = new float [count];
 float a=300;
 float d=300;
+int sze= 20;
 PVector[] loc = new PVector [count];
 PVector[] vel = new PVector [count];
 PVector[] acc = new PVector [count];
@@ -54,8 +55,15 @@ void draw() {
     background(255);
   
     //space where mouse starts and balls cannot initially go to.
-    fill(255,100,255);
-    rect(a,d,200,200);
+    fill( 255, 100, 255);
+    rect( a, d, 200, 200);
+    
+    //draws ellipse that follows mouse
+    fill( 0 );
+    ellipse( mouseX, mouseY, sze, sze);
+    
+    //removes cursor
+    noCursor();
       
     for( int i = 0; i < count; i++){
       acc[i] = PVector.random2D();
@@ -83,7 +91,17 @@ void draw() {
       } else if (loc[i].y  <= 0) {
         loc[i].y  = height ;
       }
+      //if black ball touches others you go to loser page
+      if(loc[i].x == mouseX && loc[i].y == mouseY){
+        mode=3;
+      } 
     }
+  }
+  //Losing page
+  if (mode==3){
+    background(0);
+    textSize(100);
+    text("You lose, shucks", width/2,height/2);
   }
 }
 void keyPressed(){
