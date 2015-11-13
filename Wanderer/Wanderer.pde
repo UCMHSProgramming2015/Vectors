@@ -27,8 +27,7 @@ if(true){
 }
 if(c >=100){
   c = 0;
-  v.x = random(-2, 2);
-  v.y = random(-2, 2);
+  v = new PVector (random(-3,3), random(-3,3));
 }
   //wrap the ball's position
   if (loc.x >= width) {
