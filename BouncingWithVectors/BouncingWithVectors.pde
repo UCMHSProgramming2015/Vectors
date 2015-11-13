@@ -9,8 +9,9 @@ void setup() {
 
   //initialize variables
  loc = new PVector(width/2, height/2);
-  diam = 80;
-vel = new PVector(random(-5,5), random(-5,5));
+vel = PVector.random2D();  //random vector - speed of ball stays the same while direction changes 
+vel.mult(10);  //multiply vector by 10 - random direction with magnitude of 10
+diam = 80;
 }
 
 void draw() {
@@ -20,9 +21,8 @@ void draw() {
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);      //loc.x is the x component of loc
 
-  //add velocity to position
-  loc.x += vel.x;
-  loc.y += vel.y;
+  //add velocity to position using vector addition - add vel vector to loc vector
+  loc.add(vel);           
 
   //bounce ball if it hits walls
   if (loc.x + diam/2 >= width) {
