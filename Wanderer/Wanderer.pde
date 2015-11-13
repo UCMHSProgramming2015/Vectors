@@ -1,9 +1,9 @@
 //declare variables
-int count =45;
+int count =20;
 int mode;
 float[] diam = new float [count];
-float[] a = new float [count];
-float[] d = new float [count];
+float a=300;
+float d=300;
 PVector[] loc = new PVector [count];
 PVector[] vel = new PVector [count];
 PVector[] acc = new PVector [count];
@@ -18,7 +18,7 @@ void setup() {
   for( int i = 0; i < count; i++){
   //initialize variables
   
-  loc[i] = new PVector(random(width),random(height));
+  loc[i] = new PVector(random(width),random(0,200));
   diam[i] = random(20,80);
   vel[i] = PVector.random2D();
   acc[i] = new PVector();
@@ -32,19 +32,31 @@ void setup() {
 }
 
 void draw() {
-  if(mode==0){
+  
+  if(mode==0){    //Opening screen
+    
     background(255);
    
+    //Opening text
     stroke(0);
     fill(0);
     textSize(50);
     textAlign(CENTER);
     text("Press ENTER to begin",width/2,height/2);
+    //smaller text
+    textSize(20);
+    text("Make sure to start mouse on ENTER",width/2, height-height/4);
+    text("ESC to exit game",width/2,height-height/6);
+    
   }
-  if(mode==1){
+  if(mode==1){    //Game
     //draw background to cover previous frame
     background(255);
   
+    //space where mouse starts and balls cannot initially go to.
+    fill(255,100,255);
+    rect(a,d,200,200);
+      
     for( int i = 0; i < count; i++){
       acc[i] = PVector.random2D();
   
