@@ -1,5 +1,5 @@
 //declare variables
-float diam;
+float diam, c;
 PVector loc, vel;
 
 void setup() {
@@ -10,7 +10,7 @@ void setup() {
   loc = new PVector(width/2,height/2);
   vel = PVector.random2D();
   diam = 80;
-  
+  c=0;
 }
 
 void draw() {
@@ -18,10 +18,18 @@ void draw() {
   background(0);
 
   //draw ball
+  fill(random(200), random(255), random(255), 80);
   ellipse(loc.x, loc.y, diam, diam);
   //add velocity to position
  loc.add(vel);
-
+if(true){
+  c+=1;
+}
+if(c>=30){
+  c = 0;
+  vel.x=random(-4,4);
+  vel.y=random(-4,4);
+}
   //wrap the ball's position
   if (loc.x>= width) {
     loc.x = 0;     
