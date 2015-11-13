@@ -1,6 +1,6 @@
 //declare variables
 float diam;
-PVector loc, vel;
+PVector loc, vel, acc;
 void setup() {
   //set size of canvas
   size(800, 600);
@@ -10,6 +10,7 @@ void setup() {
   loc = new PVector(random(diam/2, width - diam/2), random(diam/2, height - diam/2));
   vel = PVector.random2D();
   vel.mult(4);
+  acc = new PVector();
 }
 
 void draw() {
@@ -18,6 +19,14 @@ void draw() {
 
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
+
+  //randomize acceleration
+  acc = PVector.random2D();
+  acc.mult(0.1);
+
+  //add acceleration to velocity
+  vel.add(acc);
+  vel.limit(8);
 
   //add velocity to position
   loc.add(vel);
