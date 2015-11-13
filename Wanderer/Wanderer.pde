@@ -9,7 +9,8 @@ void setup() {
 
   //initialize variables
   loc = new PVector(width/2, height/2);
-  vel = new PVector(random(-5,5),random(-5,5));
+  vel = PVector.random2D();
+  vel.mult(4);
   diam = 80;
   
 }
