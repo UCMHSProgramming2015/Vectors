@@ -1,5 +1,7 @@
 //declare variables
-float x, y, velX, velY, diam;
+float diam;
+PVector loc;
+PVector vel;
 
 void setup() {
   //set size of canvas
@@ -35,3 +37,5 @@ void draw() {
   } else if (y - diam/2 <= 0) {
     velY = abs(velY);
   }
+  
+}
