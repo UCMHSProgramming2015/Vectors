@@ -33,6 +33,15 @@ void setup() {
 
 void draw() {
   if(mode==0){
+    background(255);
+   
+    stroke(0);
+    fill(0);
+    textSize(50);
+    textAlign(CENTER);
+    text("Press ENTER to begin",width/2,height/2);
+  }
+  if(mode==1){
     //draw background to cover previous frame
     background(255);
   
