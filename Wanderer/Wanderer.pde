@@ -19,11 +19,12 @@ void draw() {
   //draw ball
   ellipse(pos.x, pos.y, diam, diam);
 
-  //add velocitpos.y to position
+  //add velocity to position
   pos.add(vel);
+  //random acceleration, decreases and reverses velocity if it's too high
   acc = PVector.random2D();
   vel.add(acc);
-  if (vel.mag() > 14) {
+  if (vel.mag() > 20) {
     vel.mult(-0.5);
   }
   //wrap the ball's position
