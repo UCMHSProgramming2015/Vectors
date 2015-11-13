@@ -12,7 +12,6 @@ void setup() {
   vel = PVector.random2D();
   vel.mult(4);
   diam = 80;
-  
 }
 
 void draw() {
@@ -24,10 +23,16 @@ void draw() {
 
   //add velocity to position
   loc.add(vel);
+  
+  //random velocity vector every 2 seconds
+  if (frameCount % 120 == 0) {
+    vel = PVector.random2D();
+    vel.mult(4);
+  }
 
   //wrap the ball's position
   if (loc.x >= width) {
-    loc.x = 0;     
+    loc.x = 0;
   } else if (loc.x <= 0) {
     loc.x = width;
   }
