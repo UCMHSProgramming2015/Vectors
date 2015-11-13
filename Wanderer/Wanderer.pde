@@ -21,7 +21,11 @@ void draw() {
 
   //add velocitpos.y to position
   pos.add(vel);
-
+  acc = PVector.random2D();
+  vel.add(acc);
+  if (vel.mag() > 14) {
+    vel.mult(-0.5);
+  }
   //wrap the ball's position
   if(pos.x<0) {
     pos.x+=width;
