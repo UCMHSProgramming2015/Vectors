@@ -12,6 +12,7 @@ void setup() {
   
   diam = 80;
   
+  //create a random 2D vector
   vel = PVector.random2D();
   vel.mult(random(3));
 }
