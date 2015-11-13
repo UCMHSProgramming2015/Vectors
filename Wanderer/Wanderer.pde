@@ -18,7 +18,7 @@ void draw() {
   background(0);
 
   //draw ball
-  fill(random(200), random(255), random(255), 80);
+  fill(random(255), random(255), random(255));
   ellipse(loc.x, loc.y, diam, diam);
   //add velocity to position
  loc.add(vel);
