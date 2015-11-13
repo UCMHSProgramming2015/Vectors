@@ -1,7 +1,7 @@
 //declare variable
 float diam;
 //float x, y, vel.x, vel.y
-PVector loc, vel;
+PVector loc, vel, grav;
 
 void setup() {
   //set size of canvas
@@ -14,18 +14,21 @@ void setup() {
   //vel.x = random(-5, 5);
   //vel.y = random(-5, 5);
   vel = PVector.random2D();
-  vel.mult(5);
+  vel.mult(4);
+  //grav. = .1
+  grav = new PVector(0,.1);
 }
 
 void draw() {
   //draw background to cover previous frame
   background(0);
-diam= 70;
+diam= 50;
   //draw ball using PVector as a location
   ellipse(loc.x, loc.y, diam, diam);
 
   //add velocity to position
  loc.add(vel);
+ vel.add(grav);
 
 
   //bounce ball if it hits walls
@@ -36,7 +39,6 @@ diam= 70;
   }
   if (loc.y + diam/2 >= height) {
     vel.y = -abs(vel.y);
-  } else if (loc.y - diam/2 <= 0) {
-    vel.y = abs(vel.y);
+ 
   }
 }
