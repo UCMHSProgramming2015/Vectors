@@ -1,6 +1,6 @@
 //declare variables
 float diam;
-PVector loc, vel, grav;
+PVector loc, vel, accel;
 
 void setup() {
   //set size of canvas
@@ -11,9 +11,11 @@ void setup() {
   diam = 80;
   vel = PVector.random2D();
     vel.mult(4);
+  accel = new PVector();
 }
 
 void draw() {
+  accel = PVector.random2D();
   //draw background to cover previous frame
   background(0);
 
@@ -22,6 +24,8 @@ void draw() {
 
   //add velocity to position
  loc.add(vel);
+ vel.add(accel);
+ vel.limit(5);
 
   //wrap the ball's position
   if (loc.x >= width) {
