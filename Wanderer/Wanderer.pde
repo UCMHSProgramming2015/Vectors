@@ -1,49 +1,78 @@
 //declare variables
-float diam,d,a;
-PVector loc, vel, acc;
+int count =45;
+int mode;
+float[] diam = new float [count];
+float[] a = new float [count];
+float[] d = new float [count];
+PVector[] loc = new PVector [count];
+PVector[] vel = new PVector [count];
+PVector[] acc = new PVector [count];
+float[] colorsr = new float[count]; 
+float[] colorsg = new float[count];
+float[] colorsb = new float[count];
+
 void setup() {
   //set size of canvas
   size(800, 800);
-
+  mode = 0;
+  for( int i = 0; i < count; i++){
   //initialize variables
-  loc = new PVector(width/2,height/2);
-  diam = 80;
-  vel = PVector.random2D();
-  acc = new PVector();
-  acc.mult(1);
+  
+  loc[i] = new PVector(random(width),random(height));
+  diam[i] = random(20,80);
+  vel[i] = PVector.random2D();
+  acc[i] = new PVector();
+  acc[i].mult(1);
+  
+  //Adds color
+  colorsr[i]= random(0,255);
+  colorsg[i]= random(0,255);
+  colorsb[i]= random(0,255);
+  }
 }
 
 void draw() {
-  //draw background to cover previous frame
-  background(frameCount%400);
-  acc = PVector.random2D();
+  if(mode==0){
+    //draw background to cover previous frame
+    background(255);
   
+    for( int i = 0; i < count; i++){
+      acc[i] = PVector.random2D();
+  
+      //Adds color
+      fill(colorsr[i],colorsg[i],colorsb[i]);
+      //draw ball
+      ellipse(loc[i].x, loc[i].y , diam[i] , diam[i] );
 
+      //Add acceleration to velocity
+      vel[i].add(acc[i]);
+      vel[i].limit(5);
 
-  //draw ball
-  ellipse(loc.x, loc.y, diam, diam);
+      //add velocity to position
+      loc[i].add(vel[i]);
 
-  //Add acceleration to velocity
-  vel.add(acc);
-  vel.limit(5);
-
-  //add velocity to position
-  loc.add(vel);
-
-  //wrap the ball's position
-  if (loc.x >= width) {
-    loc.x = 0;     
-  } else if (loc.x <= 0) {
-    loc.x = width;
-  }
-  if (loc.y >= height) {
-    loc.y = 0;
-  } else if (loc.y <= 0) {
-    loc.y = height ;
+      //wrap the ball's position
+      if (loc[i].x  >= width) {
+        loc[i].x  = 0;     
+      } else if (loc[i].x  <= 0) {
+        loc[i].x  = width;
+      }
+      if (loc[i].y  >= height) {
+        loc[i].y  = 0;
+      } else if (loc[i].y  <= 0) {
+        loc[i].y  = height ;
+      }
+    }
   }
 }
 void keyPressed(){
-  if(keyCode==ESC){
+  if(keyCode==ESC){    //If ESC is pressed, exit program
     exit();
+  }
+  if(keyCode==ENTER){
+    mode=1;
+  }
+  if(keyCode==BACKSPACE){
+    mode=0;
   }
 }
