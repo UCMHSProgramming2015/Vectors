@@ -1,6 +1,7 @@
 //declare variables
 float diam;
 PVector loc, vel;
+int m = millis();
 
 void setup() {
   //set size of canvas
@@ -12,6 +13,7 @@ void setup() {
   diam = 80;
   
   vel = PVector.random2D();
+  vel.mult(random(3));
 }
 
 void draw() {
@@ -20,6 +22,12 @@ void draw() {
 
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
+
+  //change vel every two seconds
+  if (frameCount % 120 == 0){
+    vel = PVector.random2D();
+    vel.mult(random(3));
+  }
 
   //add velocity to position
   loc.add(vel);
