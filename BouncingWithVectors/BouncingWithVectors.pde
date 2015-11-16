@@ -3,15 +3,17 @@ int count = 30;
 float[] diam = new float[count];
 PVector[] loc = new PVector[count];
 PVector[] vel = new PVector[count];
+PVector[] gravity = new PVector[count];
 
 void setup() {
   //set size of canvas
   size(800, 600);
   for (int i = 0; i < count; i++) {
     loc[i] = new PVector(width/2, height/2);
-    diam[i] = 80;
+    diam[i] = random(5,30);
     vel[i] = new PVector(random(-2,2),random(-2,2));
     vel[i].mult(5);
+    gravity[i] = new PVector(0,1);
   }
 }
 
@@ -25,6 +27,7 @@ void draw() {
     //add velocity to position
     //loc.x += vel.x;
     //loc.y += vel.y;
+    vel[i].add(gravity[i]);
     loc[i].add(vel[i]);
 
     //bounce ball if it hits walls
