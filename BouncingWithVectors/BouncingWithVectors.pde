@@ -1,5 +1,5 @@
 //declare variables
-int count = 30;
+int count = 100;
 float[] diam = new float[count];
 PVector[] loc = new PVector[count];
 PVector[] vel = new PVector[count];
@@ -11,18 +11,19 @@ void setup() {
   //initialize variables
   for (int i = 0; i < count; i++) {
   loc[i] = new PVector(width/2, height/2);
-  diam[i] = 80;
+  diam[i] = random(20,60);
   vel[i] = PVector.random2D();
-  vel[i].mult(5);
+  vel[i].mult(15);
   }
 }
 
 void draw() {
   //draw background to cover previous frame
-  background(0);
+  background(255,0,0);
   for (int i = 0; i < count; i++) {
 
   //draw ball
+  fill(100,200,100);
   ellipse(loc[i].x, loc[i].y, diam[i], diam[i]);
 
   //add velocity to position
