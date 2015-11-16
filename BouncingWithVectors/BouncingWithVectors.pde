@@ -1,40 +1,49 @@
-//declare variables
-//float loc.loc.x, loc.y, velloc.loc.x, vel.y, diam;
-float diam = 80; 
+int count = 80; //makes 60  balls
 
-//float loc.loc.x,loc.y  
-PVector loc, vel; // replaces loc.loc.x,loc.y, velloc.loc.x, vel.y, 
+//declare variables
+
+float [] diam = new float [count]; //diameter
+
+
+//float loc.x, loc.y  
+PVector [] loc = new PVector [count];
+PVector [] vel = new PVector [count];  // replaces x,y, vel[i]x, vel[i]y, 
 
 
 void setup() {
   //set size of canvas
   size(800, 600);
-
-  //initialize variables
-  loc = new PVector (width/2, height/2);
-  vel = PVector.random2D(); 
-  
+  for (int i = 0; i < count; i ++) { //for arrays
+    //initialize variables
+    loc [i] = new PVector (random(350,450), height/2); //starts ellipse off in a random position from 350-450, middle of screen 
+    vel[i] = PVector.random2D(); //gives speed magnitude of one
+    vel[i].mult(random(5,8)); //increased speed
+    diam [i] = random(3,88); //diameter
+  }
 }
 
 void draw() {
   //draw background to cover previous frame
   background(0);
+  for (int i = 0; i < count; i ++) { //for arrays
+    strokeWeight(3); // increased stroke weight 
+    stroke(random(206), random(235), random(245)); //gives random stroke
+    //draw ball
+    ellipse(loc[i].x, loc[i].y, diam[i], diam[i]);
 
-  //draw ball
-  ellipse(loc.x, loc.y, diam, diam);
+    //add vel[i]ocitloc.y to position
+    loc[i].add(vel[i]);
 
-  //add velocitloc.y to position
-  loc.add(vel);
-
-  //bounce ball if it hits walls
-  if (loc.x + diam/2 >= width) {
-    vel.x = -abs(vel.x);    //if the ball hits the right wall, assign loc.x velocitloc.y the negative version of itself
-  } else if (loc.x - diam/2 <= 0) {
-    vel.x = abs(vel.x);     //if the ball hits the left wall, assign loc.x velocitloc.y the positive version of itself
-  }
-  if (loc.y + diam/2 >= height) {
-    vel.y = -abs(vel.y);
-  } else if (loc.y - diam/2 <= 0) {
-    vel.y = abs(vel.y);
+    //bounce ball if it hits walls
+    if (loc[i].x + diam[i]/2 >= width) {
+      vel[i].x = -abs(vel[i].x);    //if the ball hits the right wall, assign loc.x vel[i]ocitloc.y the negative version of itself
+    } else if (loc[i].x - diam[i]/2 <= 0) {
+      vel[i].x = abs(vel[i].x);     //if the ball hits the left wall, assign loc.x vel[i]ocitloc.y the positive version of itself
+    }
+    if (loc[i].y + diam[i]/2 >= height) {
+      vel[i].y = -abs(vel[i].y);
+    } else if (loc[i].y - diam[i]/2 <= 0) {
+      vel[i].y = abs(vel[i].y);
+    }
   }
 }
