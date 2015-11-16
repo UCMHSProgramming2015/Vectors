@@ -13,6 +13,7 @@ void setup() {
   diam = 80;
   vel = PVector.random2D(); //random direction vector
   vel.mult(10); //create vector with multiple of 10
+  colorMode(HSB,800,600,10);
 }
 
 void draw() {
@@ -21,6 +22,9 @@ void draw() {
 
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
+
+  //add color to ball
+  fill(loc.x, loc.y,10);
 
   //add velocity to position
   loc.add(vel);
