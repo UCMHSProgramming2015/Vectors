@@ -1,9 +1,10 @@
 //declare variables
-float diam;
+int count = 50;
+float []diam = new float [count];
 //float x, y
-PVector loc;
+PVector []loc = new PVector[count];
 //float velX, velY
-PVector vel;
+PVector []vel = new PVector[count];
 
 
 void setup() {
@@ -11,10 +12,12 @@ void setup() {
   size(800, 600);
 
   //initialize variables
-  loc = new PVector (width/2, height/2);
-  diam = 80;
-  vel = PVector.random2D();
-  vel.mult(5);
+  for (int i = 0; i < count; i ++) {
+  loc[i] = new PVector (width/2, height/2);
+  diam[i] = random(0,100);
+  vel[i] = PVector.random2D();
+  vel[i].mult(5);
+  }
 }
 
 void draw() {
@@ -22,20 +25,22 @@ void draw() {
   background(0);
 
   //draw ball
-  ellipse(loc.x, loc.y, diam, diam);
+  for(int i = 0; i < count; i++){
+  ellipse(loc[i].x, loc[i].y, diam[i], diam[i]);
 
   //add velocity to position
-  loc.add(vel);
+  loc[i].add(vel[i]);
 
   //bounce ball if it hits walls
-  if (loc.x + diam/2 >= width) {
-    vel.x = -abs(vel.x);    //if the ball hits the right wall, assign x velocity the negative version of itself
-  } else if (loc.x - diam/2 <= 0) {
-    vel.x = abs(vel.x);     //if the ball hits the left wall, assign x velocity the positive version of itself
+  if (loc[i].x + diam[i]/2 >= width) {
+    vel[i].x = -abs(vel[i].x);    //if the ball hits the right wall, assign x velocity the negative version of itself
+  } else if (loc[i].x - diam[i]/2 <= 0) {
+    vel[i].x = abs(vel[i].x);     //if the ball hits the left wall, assign x velocity the positive version of itself
   }
-  if (loc.y + diam/2 >= height) {
-    vel.y = -abs(vel.y);
-  } else if (loc.y - diam/2 <= 0) {
-    vel.y = abs(vel.y);
+  if (loc[i].y + diam[i]/2 >= height) {
+    vel[i].y = -abs(vel[i].y);
+  } else if (loc[i].y - diam[i]/2 <= 0) {
+    vel[i].y = abs(vel[i].y);
   }
+}
 }
