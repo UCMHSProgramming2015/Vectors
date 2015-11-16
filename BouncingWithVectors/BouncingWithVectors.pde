@@ -1,39 +1,42 @@
 //declare variables
-float diam;
-PVector loc;
-PVector vel;
-
+int count = 30;
+float[] diam = new float[count];
+PVector[] loc = new PVector[count];
+PVector[] vel = new PVector[count];
 
 void setup() {
   //set size of canvas
   size(800, 600);
-
-  loc = new PVector(width/2, height/2);
-  diam = 80;
-  vel = PVector.random2D();
-  vel.mult(5);
+  for (int i = 0; i < count; i++) {
+    loc[i] = new PVector(width/2, height/2);
+    diam[i] = 80;
+    vel[i] = new PVector(random(-2,2),random(-2,2));
+    vel[i].mult(5);
+  }
 }
 
 void draw() {
   background(0);
+  for (int i = 0; i < count; i++) {
+    //draw ball
+    fill(random(255),random(255),random(255));
+    ellipse(loc[i].x, loc[i].y, diam[i], diam[i]);
 
-  //draw ball
-  ellipse(loc.x, loc.y, diam, diam);
+    //add velocity to position
+    //loc.x += vel.x;
+    //loc.y += vel.y;
+    loc[i].add(vel[i]);
 
-  //add velocity to position
-  //loc.x += vel.x;
-  //loc.y += vel.y;
-  loc.add(vel);
-
-  //bounce ball if it hits walls
-  if (loc.x + diam/2 >= width) {
-    vel.x = -abs(vel.x);    
-  } else if (loc.x - diam/2 <= 0) {
-    vel.x = abs(vel.x);    
-  }
-  if (loc.y + diam/2 >= height) {
-    vel.y = -abs(vel.y);
-  } else if (loc.y - diam/2 <= 0) {
-    vel.y = abs(vel.y);
+    //bounce ball if it hits walls
+    if (loc[i].x + diam[i]/2 >= width) {
+      vel[i].x = -abs(vel[i].x);
+    } else if (loc[i].x - diam[i]/2 <= 0) {
+      vel[i].x = abs(vel[i].x);
+    }
+    if (loc[i].y + diam[i]/2 >= height) {
+      vel[i].y = -abs(vel[i].y);
+    } else if (loc[i].y - diam[i]/2 <= 0) {
+      vel[i].y = abs(vel[i].y);
+    }
   }
 }
