@@ -88,8 +88,9 @@ void draw() {
 
 
       //If little  ball touches others program ends
-      if (mouseX==loc[i].x && mouseY==loc[i].y) {
+      if (dist(mouseX,mouseY,loc[i].x,loc[i].y) < diam[i]){
         mode=2;
+        println("Stop touching me");
       }
     }
     //Shows timer
