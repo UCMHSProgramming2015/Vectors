@@ -1,6 +1,7 @@
 //declare variables
 PVector loc;
 PVector vel;
+PVector acc;
 float diam;
 
 void setup() {
@@ -10,12 +11,17 @@ void setup() {
   //initialize variables
   diam = 80;
   loc = new PVector(width/2, height/2); 
-  vel = new PVector(random(-5,5), random(-5,5));
+  vel = new PVector(0, 0);
+  acc = PVector.random2D();
+  acc.mult(.01);
+ 
   
 }
 
 void draw() {
   //draw background to cover previous frame
+  acc = PVector.random2D();
+  acc.mult(1);
   background(0);
 
   //draw ball
@@ -23,6 +29,10 @@ void draw() {
 
   //add velocity to position
   loc.add(vel);
+  
+  //add acceleration to velocity
+  vel.add(acc);
+  
 
   //wrap the ball's position
   if (loc.x >= width) {
