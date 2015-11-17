@@ -27,6 +27,7 @@ vel.add(acc);
 loc.add(vel);
 vel.limit(10);
   //wrap the ball's position
+
   if (loc.x >= width) {
     fill(random(255),random(255),random(255));
     loc.x = 0;     
