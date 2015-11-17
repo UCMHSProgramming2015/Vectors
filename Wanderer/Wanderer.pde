@@ -1,16 +1,21 @@
 //declare variables
-float x, y, velX, velY, diam;
+//float x, y, velX, velY, diam;
+PVector loc;
+PVector vel;
+float diam;
+PVector acc;
+
 
 void setup() {
   //set size of canvas
   size(800, 600);
 
   //initialize variables
-  x = width/2;
-  y = height/2;
+  loc = new PVector(width/2, height/2);
   diam = 80;
-  velX = random(-5, 5);
-  velY = random(-5, 5);
+  //pick initial random variables for velocity and acceleration
+  vel = PVector.random2D();
+  vel.mult(5);
 }
 
 void draw() {
@@ -18,20 +23,24 @@ void draw() {
   background(0);
 
   //draw ball
-  ellipse(x, y, diam, diam);
+  ellipse(loc.x, loc.y, diam, diam);
+  acc = PVector.random2D();
+  acc.mult(.5);
+  vel.limit(5);
+  //add a random velocity of mult 10 to position and add a random acceleration of mult .1 to velocity
 
-  //add velocity to position
-  x += velX;
-  y += velY;
+  loc.add(vel);
+  vel.add(acc);
 
-  //wrap the ball's position
-  if (x + diam/2 >= width) {
-    x = -diam/2;     
-  } else if (x - diam/2 <= 0) {
-    x = width + diam/2;
+  //when the ball hits a wall an new random velocity and acceleration vector is selected
+  if (loc.x >= width) {
+    loc.x = 0;
+  } else if (loc.x  <= 0) {
+    loc.x = width;
   }
-  if (y + diam/2 >= height) {
-    y = -diam/2;
-  } else if (y - diam/2 <= 0) {
-    y = height + diam/2;
+  if (loc.y >= height) {
+    loc.y = 0;
+  } else if (loc.y <= 0) {
+    loc.y = height;
   }
+}
