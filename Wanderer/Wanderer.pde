@@ -1,37 +1,63 @@
 //declare variables
-float x, y, velX, velY, diam;
+PVector loc;
+PVector vel = PVector.random2D();
+PVector acc;
+int diam = 80;
+PVector [] ripples = new PVector[100];
 
 void setup() {
   //set size of canvas
   size(800, 600);
 
-  //initialize variables
-  x = width/2;
-  y = height/2;
-  diam = 80;
-  velX = random(-5, 5);
-  velY = random(-5, 5);
+  //initialize location
+  loc = new PVector(width/2, height/2);
+  
+  //assign initial ripples
+  for (int i = 0; i < 100; i++) {
+    ripples[i] = new PVector(0, 0);
+  }
 }
 
 void draw() {
   //draw background to cover previous frame
-  background(0);
+  background(128,196,255);
+
+  PVector acc = PVector.random2D();
+  acc.mult(0.1);
 
   //draw ball
-  ellipse(x, y, diam, diam);
+  ellipse(loc.x, loc.y, diam, diam);
 
   //add velocity to position
-  x += velX;
-  y += velY;
+  loc.add(vel);
+
+  //add acceleration to velocity
+  vel.add(acc);
+  vel.limit(100);
+
+  //reassign ripple values
+  for (int i = 99; i > 0; i--) {
+    ripples[i] = ripples[i-1];
+  }
+
+  //draw ripples
+  for (int i = 0; i < 50; i++) {
+    ripples[0] = loc;
+    noFill();
+    strokeWeight(2);
+    stroke(0,255-25*i);
+    ellipse(ripples[i].x, ripples[i].y, diam+100*i, diam+100*i);
+  }
 
   //wrap the ball's position
-  if (x + diam/2 >= width) {
-    x = -diam/2;     
-  } else if (x - diam/2 <= 0) {
-    x = width + diam/2;
+  if (loc.x > width) {
+    loc.x = 0;
+  } else if (loc.x < 0) {
+    loc.x = width;
   }
-  if (y + diam/2 >= height) {
-    y = -diam/2;
-  } else if (y - diam/2 <= 0) {
-    y = height + diam/2;
+  if (loc.y > height) {
+    loc.y = 0;
+  } else if (loc.y < 0) {
+    loc.y = height;
   }
+}
