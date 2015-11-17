@@ -13,7 +13,7 @@ void setup() {
   
   //create a random 2D vector
   vel = PVector.random2D();
-  vel.mult(random(3));
+  vel.mult(random(.1));
   acc = new PVector();
 }
 
