@@ -31,7 +31,7 @@ void draw() {
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
   
-  vel = PVector.random2D();
+  vel.limit(5);
   vel = vel.add(acc);
   
 
