@@ -1,5 +1,4 @@
 //declare variables
-//float x, y, velX, velY, diam;
 PVector loc;
 PVector vel;
 float diam;
@@ -13,7 +12,7 @@ void setup() {
   //initialize variables
   loc = new PVector(width/2, height/2);
   diam = 80;
-  //pick initial random variables for velocity and acceleration
+  //pick initial random variables for velocity
   vel = PVector.random2D();
   vel.mult(5);
 }
@@ -24,15 +23,16 @@ void draw() {
 
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
-  acc = PVector.random2D();
+  //initialize acceleration to have a random magnitude of .5 EVERY frame
+  acc = PVector.random2D(); 
   acc.mult(.5);
+  //limit velocity to a magnitude of 5
   vel.limit(5);
-  //add a random velocity of mult 10 to position and add a random acceleration of mult .1 to velocity
-
+  //add vel to loc and acc to vel
   loc.add(vel);
   vel.add(acc);
 
-  //when the ball hits a wall an new random velocity and acceleration vector is selected
+  //when a ball hits the wall it moves to the opposite side
   if (loc.x >= width) {
     loc.x = 0;
   } else if (loc.x  <= 0) {
