@@ -16,14 +16,14 @@ void setup() {
 void draw() {
   //draw background to cover previous frame
   background(0);
-
+a = PVector.random2D();
   //draw ball
   fill(random(255), random(255), random(255));
   ellipse(loc.x, loc.y, diam, diam);
   //add velocity to position
  loc.add(vel);
  vel.add(a);
- a.mult(0.1);
+ a.mult(0.2);
  vel.limit(5);
   //wrap the ball's position
   if (loc.x>= width) {
