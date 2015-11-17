@@ -64,6 +64,7 @@ void draw() {
   } else if (loc.y <= 0) {
     loc.y = height;
   }
+  
   //ball 2:  
     if (loc2.x >= width) {
     loc2.x = 0;     
@@ -74,5 +75,10 @@ void draw() {
     loc2.y = 0;
   } else if (loc2.y <= 0) {
     loc2.y = height;
+  }
+  
+  //if the two balls ever end up on top of each other, the fill will change
+  if (loc2.x == loc.x && loc2.y == loc.y){
+    fill(240,20,180);
   }
 }
