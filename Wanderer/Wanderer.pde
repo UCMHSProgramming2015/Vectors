@@ -11,6 +11,7 @@ void setup() {
   //initialize variables
   loc = new PVector(width/2, height/2); 
   vel = new PVector(random(-5, 5), random(-5, 5));
+  acc = new PVector(1, 1);
   diam = 80;
 }
 
