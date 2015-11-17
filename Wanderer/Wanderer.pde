@@ -1,4 +1,5 @@
 //declare variables
+int tim;
 int count =20;
 int mode;
 float[] diam = new float [count];
@@ -24,12 +25,14 @@ void setup() {
   vel[i] = PVector.random2D();
   acc[i] = new PVector();
   acc[i].mult(1);
-  
+  /*
   //Adds color
   colorsr[i]= random(0,255);
   colorsg[i]= random(0,255);
   colorsb[i]= random(0,255);
+  */
   }
+  tim= 0;
 }
 
 void draw() {
@@ -96,6 +99,8 @@ void draw() {
         mode=3;
       } 
     }
+    tim=tim+1;
+    text( tim, width/2, height/6);
   }
   //Losing page
   if (mode==3){
