@@ -21,35 +21,40 @@ void setup() {
 }
 
 void draw() {
-  //draw background to cover previous frame
+  //declare acceleration
   acc = PVector.random2D();
   acc.mult(1);
+  
+  //draw background to cover previous frame
   background(0);
 
   //draw ball
-  ellipse(loc.x, loc.y, diam, diam);
-  fill(i, 255, 200);
-  i = i + 1;
-
-  //add velocity to position
-  loc.add(vel);
+    ellipse(loc.x, loc.y, diam, diam);
+    fill(i, 255, 200);
+    i = i + 1;
   
-  //add acceleration to velocity
-  vel.add(acc);
+    //add velocity to position
+    loc.add(vel);
+    
+    //add acceleration to velocity
+    vel.add(acc);
+    vel.limit(10);
+    
   
-
-  //wrap the ball's position
-  if (loc.x >= width) {
-    loc.x = 0;     
-  } else if (loc.x <= 0) {
-    loc.x = width;
-  }
-  if (loc.y >= height) {
-    loc.y = 0;
-  } else if (loc.y <= 0) {
-    loc.y = height;
-  }
-  if (i > 255) {
-    i = 0;
-  }
+    //wrap the ball's position
+    if (loc.x >= width) {
+      loc.x = 0;     
+    } else if (loc.x <= 0) {
+      loc.x = width;
+    }
+    if (loc.y >= height) {
+      loc.y = 0;
+    } else if (loc.y <= 0) {
+      loc.y = height;
+    }
+    
+    //reset i
+    if (i > 255) {
+      i = 0;
+    }
 }
