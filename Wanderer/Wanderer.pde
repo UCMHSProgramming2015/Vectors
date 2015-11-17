@@ -1,6 +1,7 @@
 //declare variables
 int count =45;
 int mode;
+int circ = 20;
 float[] diam = new float [count];
 float[] a = new float [count];
 float[] d = new float [count];
@@ -50,8 +51,13 @@ void draw() {
   
       //Adds color
       fill(colorsr[i],colorsg[i],colorsb[i]);
-      //draw ball
+      //draw balls
       ellipse(loc[i].x, loc[i].y , diam[i] , diam[i] );
+      
+      //Adds ball where cursor is
+      noCursor();
+      fill(0);
+      ellipse(mouseX,mouseY, circ, circ);
 
       //Add acceleration to velocity
       vel[i].add(acc[i]);
