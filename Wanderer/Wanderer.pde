@@ -1,37 +1,46 @@
 //declare variables
-float x, y, velX, velY, diam;
-
+float diam;
+PVector pos, vel, acc;
 void setup() {
   //set size of canvas
   size(800, 600);
 
   //initialize variables
-  x = width/2;
-  y = height/2;
+  pos = new PVector(width/2,height/2);
   diam = 80;
-  velX = random(-5, 5);
-  velY = random(-5, 5);
+  vel = new PVector(0,0);
+  colorMode(HSB);
+  strokeWeight(10);
 }
 
 void draw() {
   //draw background to cover previous frame
-  background(0);
+  background(150,80,100);
 
   //draw ball
-  ellipse(x, y, diam, diam);
+  stroke(map(pos.y,0,height,0,256),100,100);
+  ellipse(pos.x, pos.y, diam, diam);
 
   //add velocity to position
-  x += velX;
-  y += velY;
-
+  pos.add(vel);
+  //random acceleration, decreases and reverses velocity if it's too high
+  acc = PVector.random2D();
+  acc.mult(.5);
+  vel.add(acc);
+  if (vel.mag() > 15) {
+    vel.mult(-0.5);
+  }
   //wrap the ball's position
-  if (x + diam/2 >= width) {
-    x = -diam/2;     
-  } else if (x - diam/2 <= 0) {
-    x = width + diam/2;
+  if(pos.x<0) {
+    pos.x+=width;
   }
-  if (y + diam/2 >= height) {
-    y = -diam/2;
-  } else if (y - diam/2 <= 0) {
-    y = height + diam/2;
+  if(pos.x>width) {
+    pos.x+=-width;
   }
+  if(pos.y<0) {
+    pos.y+=height;
+  }
+  if(pos.y>height) {
+    pos.y+=-height;
+  }
+}
