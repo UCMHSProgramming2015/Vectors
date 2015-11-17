@@ -46,6 +46,10 @@ void draw() {
     textSize(50);
     textAlign(CENTER);
     text("Press ENTER to begin", width/2, height/2);
+    
+    //Reset timer
+    tim=0;
+    
   }
   if (mode==1) {
     //draw background to cover previous frame
