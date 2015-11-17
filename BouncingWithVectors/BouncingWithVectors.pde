@@ -1,5 +1,4 @@
-//declare variables
-//float x, y, velX, velY, diam;
+//declare vectors and variables
 PVector loc;
 PVector vel;
 float diam;
@@ -9,12 +8,9 @@ void setup() {
   size(800, 600);
 
   //initialize variables
-  /*x = width/2;
-   y = height/2;*/
   loc = new PVector (width/2, height/2);
   diam = 80;
-  /*velX = random(-5, 5);
-   velY = random(-5, 5);*/
+  //initialize vel so that it is a random vector of a magnitude of 5
   vel = PVector.random2D();
   vel.mult(5);
 }
