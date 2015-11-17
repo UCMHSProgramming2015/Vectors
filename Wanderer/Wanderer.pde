@@ -2,6 +2,8 @@
 float diam;
 PVector loc;
 PVector vel;
+PImage bg;
+
 void setup() {
   //set size of canvas
   size(800, 600);
@@ -10,11 +12,12 @@ void setup() {
   diam = 80;
   vel = new PVector(random(5,5), random(5, 5));
   colorMode(HSB, 800, 600, 100);
+  bg = loadImage("bg.jpg");
 }
 
 void draw() {
   //draw background to cover previous frame
-  background(0);
+  background(bg);
   //add color to ball
   fill(loc.x, loc.y, 100);
   
@@ -36,4 +39,6 @@ void draw() {
   } else if (loc.y - diam/2 <= 0) {
     vel.y = abs(vel.y);
   }
+  
+  
 }
