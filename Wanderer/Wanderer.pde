@@ -85,7 +85,7 @@ void draw() {
 
 
       //If little  ball touches others program ends
-      if (dist(mouseX, mouseY, loc[i].x, loc[i].y) < circ) {
+      if (dist(mouseX, mouseY, loc[i].x, loc[i].y) < diam[i]) {
         mode=2;
         println("Stop touching me");
       }
@@ -105,7 +105,6 @@ void draw() {
     text(tim, width/2, height-height/6);
 
     //Resets game
-    tim=0;
     for (int i=0; i<count; i++) {
       loc[i] = new PVector(random(width), random(0));
     }
