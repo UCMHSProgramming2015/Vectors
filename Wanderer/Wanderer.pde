@@ -1,5 +1,5 @@
 //declare variables
-int count =45;
+int count =20;
 int timerDelay = 30;
 int counter;
 int mode;
@@ -22,7 +22,7 @@ void setup() {
   for ( int i = 0; i < count; i++) {
     //initialize variables
 
-    loc[i] = new PVector(random(width), random(height));
+    loc[i] = new PVector(random(width), random(0));
     diam[i] = random(20, 80);
     vel[i] = PVector.random2D();
     acc[i] = new PVector();
@@ -40,9 +40,6 @@ void draw() {
   println("Frame count: " + frameCount + "    Counter: " + counter);
   if (mode==0) {
     background(255);
-
-    //Resets timer
-    tim=0;
 
     stroke(0);
     fill(0);
@@ -88,7 +85,7 @@ void draw() {
 
 
       //If little  ball touches others program ends
-      if (dist(mouseX,mouseY,loc[i].x,loc[i].y) < diam[i]){
+      if (dist(mouseX, mouseY, loc[i].x, loc[i].y) < circ) {
         mode=2;
         println("Stop touching me");
       }
@@ -103,8 +100,15 @@ void draw() {
 
   if (mode==2) {
     background(255);
+    text("Press backspace to replay", width/2, height/6);
     text("You lose, shucks", width/2, height/2);
     text(tim, width/2, height-height/6);
+
+    //Resets game
+    tim=0;
+    for (int i=0; i<count; i++) {
+      loc[i] = new PVector(random(width), random(0));
+    }
   }
 }
 void keyPressed() {
