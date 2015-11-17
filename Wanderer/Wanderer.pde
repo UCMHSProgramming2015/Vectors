@@ -32,15 +32,15 @@ void draw() {
   loc.add(vel);
   vel.add(acc);
 
-  //when a ball hits the wall it moves to the opposite side
-  if (loc.x >= width) {
-    loc.x = 0;
-  } else if (loc.x  <= 0) {
-    loc.x = width;
+  //when a ball hits the wall it bounces off
+  if (loc.x+diam/2 >= width) {
+    vel.x*=-1;
+  } else if (loc.x-diam/2  <= 0) {
+    vel.x*=-1;
   }
-  if (loc.y >= height) {
-    loc.y = 0;
-  } else if (loc.y <= 0) {
-    loc.y = height;
+  if (loc.y+diam/2 >= height) {
+    vel.y*=-1;
+  } else if (loc.y-diam/2 <= 0) {
+    vel.y*=-1;
   }
 }
