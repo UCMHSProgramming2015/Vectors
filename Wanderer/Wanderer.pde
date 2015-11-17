@@ -1,5 +1,6 @@
 //declare variables
-int count = 3;
+
+int count = 10;
 float[] diam = new float[count]; 
 PVector[] loc = new PVector[count];
 PVector[] vel = new PVector[count];
@@ -19,17 +20,21 @@ void setup() {
   diam[i] = 80;
   
   }
+  noStroke();
 }
 
 void draw() {
+  
+  //draw background to cover previous frame
+  background(0);
+  
   for(int i = 0; i < count; i++){
     
   acc[i] = PVector.random2D();
   acc[i].mult(.1);
   vel[i].limit(1);
   
-  //draw background to cover previous frame
-  //background(0);
+
 
   
   //draw ball
