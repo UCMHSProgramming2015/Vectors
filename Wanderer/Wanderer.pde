@@ -3,11 +3,13 @@ PVector loc;
 PVector vel;
 PVector acc;
 float diam;
+int i;
 
 void setup() {
   //set size of canvas
   size(800, 600);
-
+  i = 0;
+  
   //initialize variables
   diam = 80;
   loc = new PVector(width/2, height/2); 
@@ -15,7 +17,7 @@ void setup() {
   acc = PVector.random2D();
   acc.mult(.01);
  
-  
+  colorMode(HSB, 255);
 }
 
 void draw() {
@@ -26,6 +28,8 @@ void draw() {
 
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
+  fill(i, 255, 200);
+  i = i + 1;
 
   //add velocity to position
   loc.add(vel);
@@ -44,5 +48,8 @@ void draw() {
     loc.y = 0;
   } else if (loc.y <= 0) {
     loc.y = height;
+  }
+  if (i > 255) {
+    i = 0;
   }
 }
