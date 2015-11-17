@@ -9,8 +9,8 @@ void setup() {
   //initialize variables
   diam = 80;
   loc =  new PVector(width/2,height/2);
-  vel = new PVector(1,1);
-  accel = new PVector(0,0);
+  vel = new PVector(10,3);
+  accel = new PVector(-0.001,0.01);
 }
 
 void draw() {
@@ -23,6 +23,10 @@ void draw() {
   //add velocity to position
   loc.x += vel.x;
   loc.y += vel.y;
+  
+  //add acceleration to velocity
+  vel.x += accel.x;
+  vel.y += accel.y;
 
   //wrap the ball's position
   if (loc.x >= width) {
