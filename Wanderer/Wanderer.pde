@@ -11,7 +11,7 @@ void setup() {
   //initialize variables
   //x = width/2;
   //y = height/2;
-  diam = 80;
+  diam = 73;
   vel = PVector.random2D();
   //vel.mult(0);
   acc = PVector.random2D();
@@ -26,8 +26,9 @@ void draw() {
   
   //add here for ellipse to wander
   acc = PVector.random2D();
-  acc.mult(.09);
+  acc.mult(.099);
   //draw ball
+  vel.mult(1);
   
   ellipse(loc.x, loc.y, diam, diam);
   fill(232,239,144);
