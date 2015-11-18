@@ -10,9 +10,10 @@ void setup() {
   size(800, 600);
 for(int i = 0; i < count; i++) {
   //initialize variables
-  diam[i] = 80;
+  diam[i] = 60;
   loc[i] = new PVector (width/2, height/2);
   vel[i] = PVector.random2D();
+  vel[i].mult(5);
 } 
 }
 
@@ -21,6 +22,7 @@ void draw() {
   background(0);
 for(int i = 0; i < count; i++) {
   //draw ball
+  fill(random(255),random(255),random(255));
   ellipse(loc[i].x, loc[i].y, diam[i], diam[i]);
 
   //add velocity to position
