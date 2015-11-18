@@ -14,13 +14,14 @@ void setup() {
     loc [i] = new PVector (random(width), random(height)); 
     diam [i] = random(10, 80);
     vel[i] = PVector.random2D();
-    vel[i].mult(1); 
+    vel[i].mult(1);
+   
   }
 }
 
 void draw() {
   for (int i = 0; i < count; i ++) {
-     
+ println("x" + i + " = " + loc[i].x + ", y" + i + " = " + loc[i].y);
     //draw background to cover previous frame
     background(204, 240, 229);
     stroke(random(237), random(250), random(246));
