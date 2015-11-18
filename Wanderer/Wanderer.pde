@@ -2,8 +2,7 @@
 //float x, y, velX, velY, diam;
 float diam;
 
-PVector loc;
-PVector vel;
+PVector loc, vel, acc;
 
 void setup() {
   //set size of canvas
@@ -13,21 +12,30 @@ void setup() {
   //x = width/2;
   //y = height/2;
   diam = 80;
-  //velX = random(-5, 5);
- // velY = random(-5, 5);
   vel = PVector.random2D();
+  //vel.mult(0);
+  acc = PVector.random2D();
+  acc.mult(.05);
+
+  
 }
 
 void draw() {
   //draw background to cover previous frame
-  background(0);
-
+  background(19,24,51);
+  
+  //add here for ellipse to wander
+  acc = PVector.random2D();
+  acc.mult(.09);
   //draw ball
+  
   ellipse(loc.x, loc.y, diam, diam);
-
+  fill(232,239,144);
+  vel.add(acc);
+  vel.limit(15);  //limit v to avoid it from overcoming large velocities
+  
   //add velocity to position
-  loc.x += vel.x;
-  loc.y += vel.x;
+  loc.add(vel);
 
   //wrap the ball's position
   if (loc.x >= width) {
