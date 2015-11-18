@@ -2,10 +2,10 @@
 int count = 20;
 float diam ;
 //float loc.x,loc.y
-PVector[] loc = new float[count]; //replaces loc.x & loc.y
+PVector[] loc = new PVector[count]; //replaces loc.x & loc.y
 
 //float vel.loc.x, vel.loc.y
-PVector[] vel = new float[count]; //replaces vel.loc.x & vel.loc.y
+PVector[] vel = new PVector[count]; //replaces vel.loc.x & vel.loc.y
 
 void setup() {
   //set size of canvas
@@ -20,14 +20,13 @@ void setup() {
     //vel.loc.x= random(-5,5)
     //vel.loc.y= random(-5,5)
     vel[i] = PVector.random2D();
-    vel.mult(5);
   }
 }
 
 void draw() {
   //draw background to cover previous frame
   background(0);
-  for (int i =20; i<count; i++) {
+  for (int i =0; i<count; i++) {
 
     //draw ball
     ellipse(loc[i].x, loc[i].y, diam, diam);
@@ -49,5 +48,4 @@ void draw() {
       vel[i].y = abs(vel[i].y);
     }
   }
-}
 }
