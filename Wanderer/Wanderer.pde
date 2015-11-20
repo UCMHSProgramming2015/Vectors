@@ -1,5 +1,6 @@
 //declare variables
 float diam;
+float diam1;
 PVector loc;
 PVector vel;
 
@@ -20,11 +21,14 @@ void setup() {
 
 
   diam = 80;
+  diam1 = 20;
 }
 
 void draw() {
   //draw background to cover previous frame
   //background(0);
+
+  
   fill (frameCount%360, 20, 100);
   stroke(frameCount%360, 80, 100);
   acc = PVector.random2D();
@@ -33,6 +37,9 @@ void draw() {
 
   //draw ball
   ellipse(loc.x, loc.y, diam, diam);
+  fill (0);
+  ellipse(loc.x - 15, loc.y - 15, diam1, diam1);
+  ellipse(loc.x + 15, loc.y - 15, diam1, diam1);
 
 
 
