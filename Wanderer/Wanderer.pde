@@ -16,7 +16,7 @@ void setup() {
   vel.mult(0);
   acc = PVector.random2D();
   acc.mult(5);
-  fill(random(255),random(255),random(255));
+  fill(random(200, 255), random(200, 255), random(200, 255));
 }
 
 void draw() {
@@ -26,11 +26,11 @@ void draw() {
   //draw ball;
   ellipse(loc.x, loc.y, diam, diam);
   acc = PVector.random2D();
-  acc.mult(5);
+  acc.mult(2);
   //add velocity to position
   loc.add(vel);
   vel.add(acc);
-  vel.limit(5);
+  vel.limit(10);
 
   //wrap the ball's position
   if (loc.x >= width) {
@@ -46,5 +46,8 @@ void draw() {
   } else if (loc.y <= 0) {
     loc.y = height;
     fill(random(255), random(255), random(255));
+  }
+  if (mousePressed) {
+    vel.limit(1.5);  //velocity will decrease if mouse if pressed
   }
 }
